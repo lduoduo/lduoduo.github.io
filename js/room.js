@@ -1,9 +1,5 @@
 /**
- * 周例会主要业务js -- created by duoduo
- * 依赖插件：
- *   - sweetalert.js
- *   - MusicVisualizer.js // MusicVisualizer_all.js(该文件是原始版本，包含各种注释)
- *   - socket.io.js
+test
  */
 
 var my = {
@@ -46,41 +42,10 @@ var s = {
     //初始化总入口
     init: function () {
         this.initEvent();
-        this.initStatus();
-        this.initTimer();
-        if (my.isAdmin) {
-            this.initAdminEvent();
-        }
         FastClick.attach(document.body);
         sw.init();
     },
-    //初始化签到人的状态, 如果没有签到，则会显示弹窗让选择男女进行签到
-    initStatus: function () {
-        if (my.isCommon || my.isAdmin) {
-            my.isReady = true;
-            my.sex = 'common';
-            s.join();
-            my.isAdmin && $('.J-admin').removeClass('none') && $('.J-open-QR').addClass('none');
-            return;
-        }
-        var tmp = JSON.parse(local.getItem('myinfo') || null);
-        if (!tmp) {
-            if (my.sex == null) {
-                Mt.alert({
-                    title: '请选择性别~',
-                    confirmBtnMsg: false,
-                    isLoading: true,
-                    msg: '<div class="radio-group J-sex-select"><input type="radio" class="radio" name="gender" value=male /> : 男<br /><input type="radio" class="radio" name="gender" value=female /> : 女<br /></div>',
-                    html: true
-                });
-            }
-        } else {
-            my.isReady = true;
-            my.sex = tmp.sex;
-            $.extend(my.info, tmp);
-            s.join();
-        }
-    },
+    
     //发送消息
     sendMsg: function (msg) {
         socket.send(my.info, msg);
@@ -195,7 +160,6 @@ sw = {
 
 //启动!
 s.init();
-
 
 function test() {
     Notification.requestPermission();
