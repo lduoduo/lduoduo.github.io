@@ -48,20 +48,12 @@ var s = {
         this.initEvent();
         this.initStatus();
         this.initTimer();
-        if (my.sex) {
-            this.initSocket();
-        }
         if (my.isAdmin) {
             this.initAdminEvent();
         }
         FastClick.attach(document.body);
         sw.init();
     },
-    //初始化socket的各种监听事件
-    initSocket: function () {
-        // 加入房间
-        socket.on('connect', function () {
-
     //初始化签到人的状态, 如果没有签到，则会显示弹窗让选择男女进行签到
     initStatus: function () {
         if (my.isCommon || my.isAdmin) {
