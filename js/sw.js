@@ -100,7 +100,7 @@ self.addEventListener('push', function (event) {
         notificationOptions.body = 'Push data: \'' + dataText + '\'';
     }
 
-    event.waitUntil(Promise.all([self.registration.showNotification(notificationTitle, notificationOptions), self.analytics.trackEvent('push-received')]));
+    event.waitUntil(Promise.all([self.registration.showNotification(notificationTitle, notificationOptions)]));
 });
 
 
