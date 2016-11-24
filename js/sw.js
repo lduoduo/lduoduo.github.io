@@ -60,7 +60,7 @@ var push = {
 self.addEventListener('install', function (event) {
     // Perform install steps
     console.log(event);
-    Notification.requestPermission();
+//     Notification.requestPermission();
     push.open();
     // event.waitUntil(
     //     caches.open(CACHE_NAME)
