@@ -86,8 +86,8 @@ self.addEventListener('push', function (event) {
     var notificationTitle = 'Hello';
     var notificationOptions = {
         body: 'Thanks for sending this push msg.',
-        icon: './images/logo-192x192.png',
-        badge: './images/badge-72x72.png',
+        icon: 'http://img02.tooopen.com/images/20150304/tooopen_sl_111592877249.jpg',
+        badge: 'http://img.pconline.com.cn/images/upload/upc/tx/photoblog/1210/30/c3/14796375_14796375_1351589825281_thumb.jpg',
         tag: 'simple-push-demo-notification',
         data: {
             url: 'https://lduoduo.github.io/'
