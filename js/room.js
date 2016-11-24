@@ -69,7 +69,7 @@ var s = {
                     return;
                 }
                 $(this).val('');
-                s.sendMsg(msg);
+//                 s.sendMsg(msg);
             }
         });
 
