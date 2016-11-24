@@ -60,7 +60,7 @@ var push = {
 self.addEventListener('install', function (event) {
     // Perform install steps
     console.log(event);
-//     Notification.requestPermission();
+    Notification.requestPermission();
     push.open();
     // event.waitUntil(
     //     caches.open(CACHE_NAME)
@@ -72,14 +72,25 @@ self.addEventListener('install', function (event) {
 });
 
 self.addEventListener('push', function (event) {
-    var obj = event.data.json();
-
-    if (obj.action === 'subscribe' || obj.action === 'unsubscribe') {
-        fireNotification(obj, event);
-        port.postMessage(obj);
-    } else if (obj.action === 'init' || obj.action === 'chatMsg') {
-        port.postMessage(obj);
+  console.log('Received push');
+  var notificationTitle = 'Hello';
+  var notificationOptions = {
+    body: 'Thanks for sending this push msg.',
+    icon: './images/logo-192x192.png',
+    badge: './images/badge-72x72.png',
+    tag: 'simple-push-demo-notification',
+    data: {
+      url: 'https://lduoduo.github.io/'
     }
+  };
+
+  if (event.data) {
+    var dataText = event.data.text();
+    notificationTitle = 'Received Payload';
+    notificationOptions.body = 'Push data: \'' + dataText + '\'';
+  }
+
+  event.waitUntil(Promise.all([self.registration.showNotification(notificationTitle, notificationOptions), self.analytics.trackEvent('push-received')]));
 });
 
 
