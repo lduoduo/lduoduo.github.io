@@ -41,8 +41,6 @@ var Mt = {
     }
 }; //弹窗插件配置
 
-// ---------创建连接-----------
-var socket = io(); //初始化启动socket
 
 var s = {
     //初始化总入口
@@ -63,47 +61,7 @@ var s = {
     initSocket: function () {
         // 加入房间
         socket.on('connect', function () {
-            console.log('hear beat...');
-        });
-        // 监听消息
-        socket.on('msg', function (user, msg) {
-            s.showMsg(user, msg);
-        });
 
-        // 监听系统消息
-        socket.on('sys', function (sysMsg, data) {
-            if (!my.sex) {
-                return;
-            }
-            if (sysMsg == "in") {
-                my.addedlist.push(data);
-                console.log(data);
-            }
-            console.log(my);
-        });
-
-        // 监听自己的消息
-        socket.on('self', function (sysMsg, data) {
-            console.log('my');
-            local.setItem('myinfo', JSON.stringify(data));
-            my.info = data;
-            Mt.alert({
-                title: '签到成功~,1s后关闭',
-                timer: 1000
-            });
-        });
-
-        // 监听操作
-        socket.on('option', function (type, msg) {
-            s.getOption(type, msg);
-        });
-
-        // 获取所有用户数据
-        socket.on('getAll', function (data) {
-            my.addedlist = data;
-            console.log(data);
-        });
-    },
     //初始化签到人的状态, 如果没有签到，则会显示弹窗让选择男女进行签到
     initStatus: function () {
         if (my.isCommon || my.isAdmin) {
