@@ -43,16 +43,26 @@ var port;
 // ];
 var push = {
     open() {
+        var that = this;
         timer = setInterval(function () {
-            new Notification("hello", {
-                silent: false,
-                body: "测试而已",
-                sound: "http://10.101.48.32:3002/media/fire.mp3"
-            })
+            that.notify();
         }, 3000);
     },
     close() {
         clearInterval(timer);
+    },
+    notify() {
+        var notificationTitle = 'Hello';
+        var notificationOptions = {
+            body: 'Thanks for sending this push msg.',
+            icon: './images/logo-192x192.png',
+            badge: './images/badge-72x72.png',
+            tag: 'simple-push-demo-notification',
+            data: {
+                url: 'https://lduoduo.github.io/'
+            }
+        };
+        self.registration.showNotification(notificationTitle, notificationOptions);
     }
 }
 
@@ -72,25 +82,25 @@ self.addEventListener('install', function (event) {
 });
 
 self.addEventListener('push', function (event) {
-  console.log('Received push');
-  var notificationTitle = 'Hello';
-  var notificationOptions = {
-    body: 'Thanks for sending this push msg.',
-    icon: './images/logo-192x192.png',
-    badge: './images/badge-72x72.png',
-    tag: 'simple-push-demo-notification',
-    data: {
-      url: 'https://lduoduo.github.io/'
+    console.log('Received push');
+    var notificationTitle = 'Hello';
+    var notificationOptions = {
+        body: 'Thanks for sending this push msg.',
+        icon: './images/logo-192x192.png',
+        badge: './images/badge-72x72.png',
+        tag: 'simple-push-demo-notification',
+        data: {
+            url: 'https://lduoduo.github.io/'
+        }
+    };
+
+    if (event.data) {
+        var dataText = event.data.text();
+        notificationTitle = 'Received Payload';
+        notificationOptions.body = 'Push data: \'' + dataText + '\'';
     }
-  };
 
-  if (event.data) {
-    var dataText = event.data.text();
-    notificationTitle = 'Received Payload';
-    notificationOptions.body = 'Push data: \'' + dataText + '\'';
-  }
-
-  event.waitUntil(Promise.all([self.registration.showNotification(notificationTitle, notificationOptions), self.analytics.trackEvent('push-received')]));
+    event.waitUntil(Promise.all([self.registration.showNotification(notificationTitle, notificationOptions), self.analytics.trackEvent('push-received')]));
 });
 
 
