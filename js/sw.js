@@ -52,9 +52,11 @@ var push = {
         clearInterval(timer);
     },
     notify() {
+        var id = "000" + Math.floor(Math.random() * 1000);
+			id = id.slice(-5); id = id.replace('0', 'a');
         var notificationTitle = 'Hello';
         var notificationOptions = {
-            body: 'Thanks for sending this push msg.',
+            body: '新消息来啦：编号' + id,
             icon: 'https://img02.tooopen.com/images/20150304/tooopen_sl_111592877249.jpg',
             badge: 'https://img.pconline.com.cn/images/upload/upc/tx/photoblog/1210/30/c3/14796375_14796375_1351589825281_thumb.jpg',
             tag: 'simple-push-demo-notification',
@@ -85,7 +87,7 @@ self.addEventListener('push', function (event) {
     console.log('Received push');
     var notificationTitle = 'Hello';
     var notificationOptions = {
-        body: 'Thanks for sending this push msg.',
+        body: '测试信息.',
         icon: 'https://img02.tooopen.com/images/20150304/tooopen_sl_111592877249.jpg',
         badge: 'https://img.pconline.com.cn/images/upload/upc/tx/photoblog/1210/30/c3/14796375_14796375_1351589825281_thumb.jpg',
         tag: 'simple-push-demo-notification',
