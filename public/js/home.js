@@ -5,13 +5,18 @@
             this.initMusic();
         },
         initMusic: function () {
+            window.mv = new MusicVisualizer();
+            mv.play("media/bg.mp3", false);
+
             $('body').on('click', '.J-Music', function () {
                 var $el = $(this);
                 $el.toggleClass('on');
                 if ($el.hasClass('on')) { // 播放
-                    $('#music')[0].play();
+                    mv.resume();
+                    // $('#music')[0].play();
                 } else { // 暂停
-                    $('#music')[0].pause();
+                    mv.pause();
+                    // $('#music')[0].pause();
                 }
             });
         }
