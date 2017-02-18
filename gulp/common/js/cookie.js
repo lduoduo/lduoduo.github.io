@@ -1,5 +1,4 @@
 /**
- * Created by wd14931 on 2016/4/26.
  */
 
 (function (root, factory) {

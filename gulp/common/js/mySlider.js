@@ -1,6 +1,5 @@
 /** 轮播通用小工具:
  * 1. 简单的轮播，仅供用户反馈图片查看使用
- * create by lb36017 2016/12/29 贰陆离开我们的时候
  */
 function mySlider(para) {
     var timer = null;

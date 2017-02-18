@@ -28,5 +28,35 @@
   text-align: center;
   margin-top: 30px;
 }
+.music-btn {
+  width: 30px;
+  height: 60px;
+  position: fixed;
+  background-size: 100%;
+  right: 20px;
+  top: 10px;
+  z-index: 999;
+  background-image: url(../img/music.png);
+}
+.music-btn.on {
+  -webkit-animation: rotate2d 1.2s linear infinite;
+  animation: rotate2d 1.2s linear infinite;
+}
+@-webkit-keyframes rotate2d {
+  from {
+    -webkit-transform: rotateZ(0deg);
+  }
+  to {
+    -webkit-transform: rotateZ(360deg);
+  }
+}
+@keyframes rotate2d {
+  from {
+    transform: rotateZ(0deg);
+  }
+  to {
+    transform: rotateZ(360deg);
+  }
+}
 
 /*# sourceMappingURL=home.css.map */
