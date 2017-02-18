@@ -321,3 +321,5 @@ window.requestAnimFrame = (function () {
             return window.setTimeout(callback, 1000 / 60);
         };
 })();
+
+if (typeof module !== "undefined") module.exports = MusicVisualizer;

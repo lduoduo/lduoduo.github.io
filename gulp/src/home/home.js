@@ -1,4 +1,6 @@
 (function () {
+    var MusicVisualizer = require('../../module/music/play.js');
+    
     var home = {
         init: function(){
             this.initMusic();
@@ -23,4 +25,4 @@
 
     home.init();
 
-});
+})();
