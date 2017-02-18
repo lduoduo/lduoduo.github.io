@@ -24,6 +24,14 @@
   background: rgba(228, 180, 217, 0.23);
   color: pink;
 }
+@media screen and (max-width: 1024px) {
+  .list {
+    min-width: 90vw;
+    max-width: 90vw;
+    min-height: 80vw;
+    box-sizing: border-box;
+  }
+}
 .main {
   text-align: center;
   margin-top: 30px;

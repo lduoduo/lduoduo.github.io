@@ -544,6 +544,12 @@ a.u {
   height: 2px;
   background: -webkit-linear-gradient(left, #98bf40 21%, #f6b63a 21%, #f6b63a 79%, #98bf40 79%, #98bf40);
 }
+@media screen and (max-width: 1024px) {
+  .header {
+    min-width: 100vw;
+    max-width: 100vw;
+  }
+}
 body {
   min-width: 1200px;
   min-height: 100vh;
@@ -595,5 +601,12 @@ body {
 ::-webkit-scrollbar-corner {
     background: transparent;
 }*/
+@media screen and (max-width: 1024px) {
+  body {
+    min-width: 100vw;
+    min-height: 100vh;
+    background-size: 50%;
+  }
+}
 
 /*# sourceMappingURL=apps.css.map */
