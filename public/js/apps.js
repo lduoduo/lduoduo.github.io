@@ -1090,6 +1090,7 @@ $.fn.serializeObjectNull = function()
     var app = {
         
         init: function () {
+            FastClick.attach(document.body);
             this.initTimer();
             this.initEvent();
         },
@@ -1102,24 +1103,7 @@ $.fn.serializeObjectNull = function()
         //初始化监听事件
         initEvent: function () {
 
-        },
-        initNav: function () {
-            var html = ejs.render(this.tpl.nav, { pageName: pageName });
-            $('#menuNav').replaceWith(html);
-        },
-        //获取登录员工的信息
-        getUser: function () {
-            var str = $('#SV_USER').val();
-            var data = JSON.parse(decodeURIComponent(str) || '{}');
-            return {
-                key: data.workId,
-                value: data.username
-            };
         }
-    }
-
-    window.app = {
-        getUser:app.getUser
     }
 
     app.init();
