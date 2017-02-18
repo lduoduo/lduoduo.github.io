@@ -28,14 +28,15 @@
   .list {
     min-width: 90vw;
     max-width: 90vw;
-    min-height: 80vw;
+    min-height: 70vw;
+    max-height: 80vw;
+    overflow: auto;
     box-sizing: border-box;
   }
 }
 .main {
   text-align: center;
   margin-top: 30px;
-  margin-bottom: 50px;
 }
 .music-btn {
   width: 30px;
