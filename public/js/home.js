@@ -334,7 +334,7 @@ if (typeof module !== "undefined") module.exports = MusicVisualizer;
         },
         initMusic: function () {
             window.mv = new MusicVisualizer();
-            // mv.play("public/media/bg.m4a", false);
+            mv.play("public/media/bg.m4a", false);
 
             $('body').on('click', '.J-Music', function () {
                 var $el = $(this);
