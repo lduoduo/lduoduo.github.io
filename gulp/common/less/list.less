@@ -1,0 +1,25 @@
+@import "mixin.less";
+
+.list{
+    text-align: center;
+    display: inline-block;
+    /* margin: 0 auto; */
+    background: rgba(64, 76, 79, 0.6);
+    padding: 20px;
+    min-width: 600px;
+    min-height: 400px;
+    max-width: 900px;
+    .item{
+        margin: 10px 0;
+        font-size: 20px;
+        a{
+            display: block;
+            cursor: pointer;
+            .text-overflow();
+            &:hover{
+                background: rgba(228, 180, 217, 0.23);
+                color: pink;
+            }
+        }
+    }
+}

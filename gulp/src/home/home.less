@@ -1,56 +1,8 @@
-/**/
-.content-box {
-	margin-bottom: 71px;
-}
-.home {
-	display: flex;
-	justify-content:space-between;
-	width: 1100px;
-	margin: 80px auto 0;
-	.home-item {
-		position: relative;
-		width: 270px;
-		height: 180px;
-		padding: 20px;
-		border: 1px solid #d8d8d8;
-		border-radius: 4px;
-		box-sizing: border-box;
-		overflow: hidden;
-		img {
-			position: absolute;
-			display: none;
-			bottom: 10px;
-			right: 10px;
-		}
-		&:hover {
-			box-shadow: 2px 2px #f6b63a,-2px -2px #f6b63a, 2px -2px #f6b63a,-2px 2px #f6b63a;
-			img {
-				display: inline-block;
-			}
-		}
-		&.empty {
-			height: 0;
-			padding: 0;
-			border: none;
-		}
-	}
-	a {
-		display: flex;
-		flex-direction:column;
-		width: 100%;
-		height: 100%;
-		.home-item-title {
-			margin-bottom: 20px;
-			font-size: 18px;
-			font-weight: bold;
-			color: #000;
-		}
-		.home-item-des {
-			color: #b9b9b9;
-		}
-		
-	}
-}
-.nav {
-	display: none;
+/* 首页 */
+
+@import '../../common/less/list.less';
+
+.main{
+	text-align: center;
+	margin-top: 30px;
 }

@@ -1,5 +1,5 @@
 ﻿/**
- * Created by wd14931 on 2016/1/4.
+ * 
  * commond:
  *  less: 编译所有的less
  *
@@ -27,6 +27,9 @@ var glob = require('glob');
 var path = require('path');
 var fs = require('fs');
 var babel = require('gulp-babel');
+var imagemin = require('gulp-imagemin');
+var pngquant = require('imagemin-pngquant');
+var tinypng = require('gulp-tinypng-compress');
 
 // 报错抛出提示
 var onError = function (err) {
@@ -39,16 +42,16 @@ var onError = function (err) {
 // var cacheJSON  = require('./cache.json'),
 //     bUpload = {};
 
-var _listen = function(obj, prop, fn){
+var _listen = function (obj, prop, fn) {
 
     return Object.defineProperty(obj, prop, {
-        get: function(){
-            return this['_'+prop];
+        get: function () {
+            return this['_' + prop];
         },
-        set: function(newValue){
+        set: function (newValue) {
 
-            if(this['_'+prop] !== newValue){
-                this['_'+prop] = newValue;
+            if (this['_' + prop] !== newValue) {
+                this['_' + prop] = newValue;
                 fn(newValue);
             }
         }
@@ -56,14 +59,14 @@ var _listen = function(obj, prop, fn){
 };
 
 
-function buildCss(styleSrc){
-    gulp.src(styleSrc, {client: './'})
-        .pipe(plumber({errorHandler: onError}))
+function buildCss(styleSrc) {
+    gulp.src(styleSrc, { client: './' })
+        .pipe(plumber({ errorHandler: onError }))
         .pipe(sourcemaps.init())
         .pipe(less())
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('../public/css'))
-        .on('finish', function(){});
+        .on('finish', function () { });
 }
 
 // require编译
@@ -76,15 +79,15 @@ function bundle(b, file) {
         .pipe(source(file))
         .pipe(buffer())
 
-        .pipe(sourcemaps.init({loadMaps: true}))
+        .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest('../public/js'));
 }
 
 // 根据变动生成css与js
-function buildCssAndJs(){
+function buildCssAndJs() {
 
-    watch('src/**/!(_)*.less',function(event) {
+    watch('src/**/!(_)*.less', function (event) {
 
         var path = event.path.replace(/\\/g, '/'),
             reg = path.match(/(\/src(\/\w+)*)?\/([\w]+.less)?$/),
@@ -95,7 +98,7 @@ function buildCssAndJs(){
 
     });
 
-    watch(['src/**/!(_)*.js'],function(event) {
+    watch(['src/**/!(_)*.js'], function (event) {
 
         var path = event.path.replace(/\\/g, '/');
         // console.log(path);
@@ -123,7 +126,7 @@ function buildCssAndJs(){
 /*
  编译所有的less
  */
-function Less(callback){
+function Less(callback) {
 
     glob('src/**/!(_)*.less', {}, function (err, files) {
 
@@ -144,7 +147,7 @@ function Less(callback){
  编译所有的js
  注：执行此命令的时候请注释掉下面的 [default]任务行
  */
-function reset(callback){
+function reset(callback) {
 
     glob('src/**/!(_)*.js', {}, function (err, files) {
 
@@ -180,7 +183,7 @@ function reset(callback){
  *
  * */
 
-function minCss(callback){
+function minCss(callback) {
     return gulp.src('../public/css/*.css')
         .pipe(minifycss())
         .pipe(gulp.dest('../public/css'))
@@ -192,7 +195,7 @@ function minCss(callback){
  * compress
  *
  * */
-function compress(callback){
+function compress(callback) {
     return gulp.src('../public/js/*.js')
         .pipe(uglify())
         .pipe(gulp.dest('../public/js'))
@@ -205,7 +208,7 @@ function compress(callback){
  * read json
  *
  * */
-function readJson(fileName){
+function readJson(fileName) {
     var json = JSON.parse(fs.readFileSync(fileName));
 
     return json;
@@ -216,9 +219,31 @@ function readJson(fileName){
  * write json
  *
  * */
-function writeJson(fileName, data){
+function writeJson(fileName, data) {
 
     fs.writeFileSync(fileName, JSON.stringify(data));
+}
+
+/** 图片压缩 
+ * key值： https://tinypng.com/dashboard/developers
+*/
+function imgMin(callback) {
+    return gulp.src('img/*.{png,jpg,gif,ico}')
+        // .pipe(imagemin({
+        //     optimizationLevel: 5, //类型：Number  默认：3  取值范围：0-7（优化等级）
+        //     progressive: true, //类型：Boolean 默认：false 无损压缩jpg图片
+        //     interlaced: true, //类型：Boolean 默认：false 隔行扫描gif进行渲染
+        //     multipass: true, //类型：Boolean 默认：false 多次优化svg直到完全优化
+        //     svgoPlugins: [{removeViewBox: false}],//不要移除svg的viewbox属性
+        //     use: [pngquant()] //使用pngquant深度压缩png图片的imagemin插件
+        // }))
+        .pipe(tinypng({
+            key: 'MH_BK0nFV0smwLTz4iTXQvVDOzZXeTIf',
+            sigFile: 'images/.tinypng-sigs',
+            log: true
+        }))
+        .pipe(gulp.dest('../public/img'))
+        .on('finish', callback);
 }
 
 
@@ -234,6 +259,8 @@ gulp.task(reset);
 gulp.task(minCss);
 gulp.task(compress);
 
-gulp.task('default', gulp.series('reset','Less', 'buildCssAndJs'));
+gulp.task(imgMin);
 
-gulp.task('build', gulp.series('compress', 'minCss'));
+gulp.task('default', gulp.series('reset', 'Less', 'buildCssAndJs'));
+
+gulp.task('build', gulp.series('compress', 'minCss', 'imgMin'));
