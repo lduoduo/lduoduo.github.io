@@ -1,0 +1,52 @@
+﻿// 通用样式文件
+
+@import '../../common/less/base.less';
+@import '../../common/less/arrow.less';
+@import '../../common/less/header.less';
+
+
+// 设置网页最小宽度 
+ 
+body{  
+    min-width: 1200px;  
+    min-height: 900px;
+    /*overflow-y: hidden;*/
+    background: url('../img/bg.jpg');
+}
+//主体框架中的内容展示区域 
+.content-box{ 
+    width: 1120px;
+    min-height: 720px;
+    margin: 5px auto 0;
+    overflow: hidden;     
+    .svsearch,.svlist,.spsearch,.splist,.fdlist,.fdtype,.fdsearch,.userlist{
+        background-color: #fff;
+        margin: 20px;
+    }
+}
+
+//隐藏滚动条
+/*::-webkit-scrollbar {
+    width: 14px;
+    height: 14px;
+}
+
+::-webkit-scrollbar-track,::-webkit-scrollbar-thumb {
+    border: 5px solid transparent;
+    border-radius: 999px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: 1px 1px 5px rgba(0,0,0,.2) inset;
+}
+
+::-webkit-scrollbar-thumb {
+    min-height: 20px;
+
+    background-clip: content-box;
+    box-shadow: 0 0 0 5px rgba(0,0,0,.2) inset;
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
+}*/

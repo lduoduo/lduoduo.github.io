@@ -1,0 +1,102 @@
+// 三角箭头
+// @direction:方向 @position:定位（例left 30px） @type:实心或空心 @innercolor:当type=hollow时生效，空心区域的颜色
+.arrow ( @direction; @width; @color; ) {
+    width: 0;
+    height: 0;
+    border: @width solid transparent;
+    border-@{direction}: none;
+}
+.arrow ( @direction; @width; @color; ) when ( @direction = top ) {
+    border-bottom-color: @color;
+}
+.arrow ( @direction; @width; @color; ) when ( @direction = bottom ) {
+    border-top-color: @color;
+}
+.arrow ( @direction; @width; @color; ) when ( @direction = left ) {
+    border-right-color: @color;
+}
+.arrow ( @direction; @width; @color; ) when ( @direction = right ) {
+    border-left-color: @color;
+}
+// 下拉菜单、弹出提示层等三角箭头
+// @direction:方向 @position:定位（例left 30px） @type:实心或空心 @innercolor:当type=hollow时生效，空心区域的颜色
+.poparrow ( @direction; @position; @width: 5px; @color: #ccc; @type: solid; ) when ( @type = solid ) {
+    .arrowbase ( @direction; @width; @color; ) {
+        content: "";
+        width: 0;
+        height: 0;
+        position: absolute;
+        border: @width solid transparent;
+        border-@{direction}: none;
+    }
+    .arrowbase ( @direction; @width; @color; ) when ( @direction = top ) {
+        bottom: 100%;
+        border-bottom-color: @color;
+    }
+    .arrowbase ( @direction; @width; @color; ) when ( @direction = right ) {
+        left: 100%;
+        border-left-color: @color;
+    }
+    .arrowbase ( @direction; @width; @color; ) when ( @direction = bottom ) {
+        top: 100%;
+        border-top-color: @color;
+    }
+    .arrowbase ( @direction; @width; @color; ) when ( @direction = left ) {
+        right: 100%;
+        border-right-color: @color;
+    }
+    &:before {
+        .arrowbase(@direction; @width; @color; );
+        @pos : extract(@position, 1);
+        @{pos} : extract(@position, 2);
+    }
+}
+.poparrow ( @direction; @position; @width: 5px; @color: #ccc; @type: solid; @innercolor: #fff; ) when ( @type = hollow ) {
+    .position ( @position; @offset: 0 ) {
+        @pos : extract(@position, 1);
+        @{pos} : extract(@position, 2) + @offset;
+    }
+    .arrowbase ( @direction; @width; @color; ) {
+        content: "";
+        width: 0;
+        height: 0;
+        position: absolute;
+        border: @width solid transparent;
+        border-@{direction}: none;
+    }
+    .arrowbase ( @direction; @width; @color; ) when ( @direction = top ) {
+        bottom: 100%;
+    }
+    .arrowbase ( @direction; @width; @color; ) when ( @direction = right ) {
+        left: 100%;
+    }
+    .arrowbase ( @direction; @width; @color; ) when ( @direction = bottom ) {
+        top: 100%;
+    }
+    .arrowbase ( @direction; @width; @color; ) when ( @direction = left ) {
+        right: 100%;
+    }
+    .arrowcolor ( @direction; @color ) when ( @direction = top ) {
+        border-bottom-color: @color;
+    }
+    .arrowcolor ( @direction; @color ) when ( @direction = right ) {
+        border-left-color: @color;
+    }
+    .arrowcolor ( @direction; @color ) when ( @direction = bottom ) {
+        border-top-color: @color;
+    }
+    .arrowcolor ( @direction; @color ) when ( @direction = left ) {
+        border-right-color: @color;
+    }
+    &:before,
+    &:after {
+        .arrowbase(@direction; @width; @color; );
+        .arrowcolor(@direction; @color;);
+        .position(@position);
+    }
+    &:after {
+        border-width: @width - 1;
+        .arrowcolor(@direction; @innercolor;);
+        .position(@position; 1);
+    }
+}

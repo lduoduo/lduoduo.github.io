@@ -1,0 +1,73 @@
+//按钮样式设置
+@import "var.less";
+@import "arrow.less";
+
+.btn-group {
+    display: inline-block;
+    // height: 28px;
+    vertical-align:middle;
+}
+.btn {
+    display: inline-block;
+
+    line-height: 26px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 2px;
+    border: 1px solid @txt-line;
+    box-sizing: border-box;
+    overflow: hidden;
+    cursor: pointer;
+    padding: 0 10px;
+    min-width: 70px;
+    color: #fff;
+    &.btn-default{
+        color: @txt;
+        &:hover {
+            color:@txt;
+        }
+    }
+    &.btn-search{
+        background: @btn-ora;
+        border:1px solid @btn-ora;
+    }
+    &.btn-green {
+        background: @btn-green;
+        border: @btn-green 1px solid;
+    }
+    &.btn-reset {
+        color: @txt;
+        &:hover {
+            color:@txt;
+        }
+    }
+    &.btn-link{
+        color: @btn-link;
+        border: none;
+        padding: 0;
+        line-height: 28px;
+        vertical-align: middle;
+        min-width: 0px;
+        padding: 0 5px;
+    }
+    &.btn-add {
+        background: @btn-ora;
+        border:1px solid @btn-ora;
+    }
+    &.btn-save {
+        background: @btn-ora;
+        border:1px solid @btn-ora;
+    }
+    &.big{
+        // padding: 5px 35px;
+        width: 100px;
+        height: 40px;
+        line-height: 40px;
+    }
+    &:hover{
+        color: #fff;
+        &.btn-link{
+            color: @btn-link;
+        }
+    }
+}

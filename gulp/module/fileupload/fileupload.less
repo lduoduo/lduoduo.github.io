@@ -1,0 +1,123 @@
+@import '../../common/less/mixin.less';
+
+.upload-box{
+    .box-upload{
+        position: relative;
+        cursor: pointer;
+        width: 150px;
+        height: 150px;
+        border: 2px dashed @icon;
+        display: inline-block;
+        box-sizing: border-box;
+        &:before,&:after{
+            content: '';
+            height: 5px;
+            width: 20px;
+            background: @icon;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-top: -20px;
+            margin-left: -10px;
+        }
+        &:after{
+            transform: rotate(90deg);
+        }
+    }
+    .box-drag{
+        width: 100%;
+        height: 100%;
+        &:after{
+            content: '点击或拖拽来添加图片';
+            font-size: 13px;
+            width: 100%;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            color: @icon;
+            text-align: center;
+            display: block;
+        }
+    }
+    .box-preview{
+        display: inline-block;
+        img{
+            width: 100%;
+            height: 100%;
+        }
+        .upload_append_list{
+            position: relative;
+            display: inline-block;
+            // overflow: hidden;
+            width: 150px;
+            height: 150px;
+            // margin: 0 5px;
+            margin-right: 15px;
+            .bgrgba(#000,0.4);
+            // background: rgba(100, 100, 100, 0.4);
+            &:hover{
+                figure{
+                    -webkit-filter: blur(8px);
+                    filter: blur(8px);
+                }
+                figcaption{
+                    opacity: 1;
+                }
+            }
+        }
+        figure{
+            width: 100%;
+            height: 100%;
+            margin: 0;
+        }
+        figcaption{
+            font-size: 12px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transition: opacity .2s linear;
+            text-align: center;
+            opacity: 0;
+            color: #fff;
+            padding: 40px 0;
+            box-sizing: border-box;
+            .bgrgba(#000,0.3);
+            p{
+                display: block;
+                font-size: 16px;
+                box-sizing: border-box;
+                word-break: break-all;
+            }
+        }
+        .upload-delete{
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            // border: 3px solid @btn-ora;
+            border-radius: 50%;
+            box-sizing: border-box;
+            position: absolute;
+            right: -10px;
+            top: -10px;
+            background: #a9bcc4;
+            transform: rotate(45deg);
+            cursor: pointer;
+            &:before,&:after{
+                content: '';
+                height: 3px;
+                width: 15px;
+                background: #fff;
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                margin-top: -2px;
+                margin-left: -8px;
+            }
+            &:after{
+                transform: rotate(90deg);
+            }
+        }
+    }
+}

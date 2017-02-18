@@ -1,0 +1,284 @@
+/*
+ * 国内游各个后台系统，统一一个业务CSS，命名为app.css
+ * 请大家注意完善注释
+ */
+
+/*
+ * 覆盖inspinia原始样式
+ */
+// 左侧收藏菜单文字缩小、横排、超出省略号
+body.mini-navbar .navbar-default .nav > li > a {
+    white-space: nowrap;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    font-size: inherit!important;
+
+    padding-left: 20px;
+}
+.pagination {
+    margin:0;
+}
+
+
+/*工具类*/
+.nowrap {
+    white-space:nowrap;
+}
+.td-middle td {
+    vertical-align:middle!important;
+}
+.grey {
+    color: #BBB7B7;
+}
+.red {
+    color:red;
+}
+.ellipsis {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.fs-20 {
+    font-size:20px;
+}
+.fs-22 {
+    font-size:22px;
+}
+
+/*只读输入框边框*/
+input.readonly{
+    border: 1px solid #ccc;
+}
+
+/*无效的列表项*/
+tr.invalid{
+	color:#ccc;
+	td.td-index {
+		color:#676A6C;
+	}
+	td.task-name {
+		text-decoration:line-through;
+	}
+}
+
+// 空指令，目的是保证标签编译完后显示，避免数据显示前闪现绑定标签
+[v-cloak] {
+    display: none;
+}
+
+/*加载进度条(圈圈样式)*/
+.progress-circle-parent {
+    position:relative;
+}
+.progress-circle-showEle {
+    display: none;
+}
+.progress-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -20px;
+    margin-top: -20px;
+    transform: scale(2);
+    -ms-transform:scale(2); 	/* IE 9 */
+    -moz-transform:scale(2); 	/* Firefox */
+    -webkit-transform:scale(2); /* Safari 和 Chrome */
+    -o-transform:scale(2);
+}
+.input-daterange .input-group-addon {
+    padding:0 2px;
+}
+.input-daterange .btn {
+    padding:5px;
+}
+
+/* 百分比progress样式重写 */
+.progress {
+    background-color: #ddd;
+    width: 100%;
+    margin-bottom: 0;
+    margin-top: 5px;
+}
+/* 表格中类似标题的长本文宽度限制 */
+table .title-txt {
+    max-width: 130px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+	white-space: nowrap;
+}
+
+/*
+ * 覆盖checkbox、radio原始样式
+ * checkbox、radio样式重写
+ */
+
+@font-face {
+    font-family: 'FontAwesome';
+    src: url('../lib/font-awesome/4.4.0/fonts/fontawesome-webfont.eot?v=4.4.0');
+    src: url('../lib/font-awesome/4.4.0/fonts/fontawesome-webfont.eot?#iefix&v=4.4.0') format('embedded-opentype'),url('../lib/font-awesome/4.4.0/fonts/fontawesome-webfont.woff2?v=4.4.0') format('woff2'),url('../lib/font-awesome/4.4.0/fonts/fontawesome-webfont.woff?v=4.4.0') format('woff'),url('../lib/font-awesome/4.4.0/fonts/fontawesome-webfont.ttf?v=4.4.0') format('truetype'),url('../lib/font-awesome/4.4.0/fonts/fontawesome-webfont.svg?v=4.4.0#fontawesomeregular') format('svg');
+    font-weight: normal;
+    font-style: normal
+}
+
+.radio-checkbox-inline{
+    padding: 0px;
+    white-space: nowrap;
+    line-height: 20px;
+    &,& *{
+        cursor: pointer;
+    }
+    & + & {
+        margin: 0px;
+    }
+    label{
+        margin: 0px;
+        padding-right: 20px;
+        font-weight: normal;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+    label:before{
+        content: "";
+        width: 20px;
+        height: 20px;
+        border: 1px solid #ccc;
+        display: inline-block;
+        vertical-align: -10%;
+    }
+    label:hover:before{
+        border: 2px solid #2C8F7B;
+    }
+}
+
+.radio-inline,.checkbox-inline {
+    .radio-checkbox-inline;
+    input[type=radio],input[type=checkbox]{
+        width: 1px;
+        height: 1px;
+        opacity: 0;
+        margin: 0;
+        &:checked + label:before{
+            font: normal normal normal 14px/1 FontAwesome;
+            content: '\f00c';
+            border: 2px solid #2C8F7B;
+            color: #fff;
+            background: #2C8F7B;
+            text-align: center;
+            vertical-align: 20%;
+        }
+
+        &:disabled + label:before{
+            border: 2px solid #ccc;
+            background: #ccc;
+        }
+    }
+}
+
+.radio-inline label:before{
+    border-radius: 10px;
+}
+.checkbox-inline label:before{
+    border-radius: 0px;
+}
+
+// umeditor样式重写
+.edui-container-fullscreen{
+    width: auto!important;
+    height: auto!important;
+    top: 80px!important;
+    left: 110px!important;
+    right: 20px!important;
+    bottom: 40px!important;
+    // overflow-y: scroll!important;
+    .edui-body-container{
+        width: 100%!important;
+        max-height: 100%!important;
+    }
+}
+.edui-body-container{
+    table-layout: fixed;
+    word-break: break-all;
+    overflow-x: hidden;
+}
+.edui-content-textarea{
+    display: block!important;
+    width: 1px!important;
+    height: 1px!important;
+    min-height: 1px!important;
+    opacity: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+/* 图片宽度限制 */
+img{
+    max-width: 100%;
+}
+
+.half-width{
+    width: 49%;
+}
+
+.one-third-width{
+    width: 33%;
+}
+
+/*进度条动画*/
+.progress-bar-show-ele{
+    height: 0!important;
+    overflow: hidden!important;
+    padding: 0!important;
+    border: 0!important;
+}
+
+/* 重写H+页面框架 */
+body {
+  overflow: hidden;
+}
+
+.navbar-static-side {
+    width: 90px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 2;
+}
+.navbar-static-top{
+    margin-bottom: 0;
+    position: fixed;
+    left: 90px;
+    right: 0;
+    top: 0;
+    z-index: 2;
+    border-bottom: 1px solid #e7eaec;
+}
+.layout-footer {
+  height: 40px;
+  position: fixed!important;
+  left: 90px!important;
+  right: 0!important;
+  bottom: 0!important;
+  z-index: 2!important;
+}
+.content-box{
+    background: #F4F6FA;
+    overflow-y: auto;
+    padding: 20px 0;
+    display: none;
+    box-sizing: border-box;
+}
+
+/* 站内信 */
+.flashInfo {
+    -webkit-animation-name: flash;
+    animation-name: flash;
+    -webkit-animation-duration: 2s;
+    animation-duration: 2s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    z-index: 100;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+}

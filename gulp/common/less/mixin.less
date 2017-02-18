@@ -1,0 +1,29 @@
+// 12px像素宋体
+.simsun12() {
+    font-size: 12px;
+    font-family: SimSun, Arial, "Hiragino Sans GB", sans-serif;
+}
+// 兼容IE的半透明背景色解决方案
+.bgrgba ( @color: #000; @a: 0.5 ) {
+    background-color: rgba(red(@color), green(@color), blue(@color), @a);
+    filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr=argb(rgba(red(@color), green(@color), blue(@color), @a)), endColorstr=argb(rgba(red(@color), green(@color), blue(@color), @a)));
+}
+// box-shadow
+.boxshadow( @a ) {
+    -moz-box-shadow: @a;
+    -o-box-shadow: @a;
+    -webkit-box-shadow: @a;
+    box-shadow: @a;
+}
+// 改变盒模型为border-box
+.boxsizing(@type: border-box) {
+    -moz-box-sizing: @type;
+    -webkit-box-sizing: @type;
+    box-sizing: @type;
+}
+// 单行文本超出显示省略号
+.text-overflow() {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
