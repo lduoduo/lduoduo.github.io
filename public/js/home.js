@@ -327,10 +327,11 @@ if (typeof module !== "undefined") module.exports = MusicVisualizer;
 },{}],2:[function(require,module,exports){
 (function () {
     var MusicVisualizer = require('../../module/music/play.js');
-    
+
     var home = {
-        init: function(){
+        init: function () {
             this.initMusic();
+            worker.init();
         },
         initMusic: function () {
             window.mv = new MusicVisualizer();
@@ -347,6 +348,54 @@ if (typeof module !== "undefined") module.exports = MusicVisualizer;
                     // $('#music')[0].pause();
                 }
             });
+        }
+    }
+
+    var worker = {
+        init:function(){
+            this.initWS();
+            this.initWW();
+        },
+        initWS: function () {
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('js/sw.js', { scope: '/', insecure: true })
+                    .then(function (registration) {
+                        // Registration was successful
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    }).catch(function (err) {
+                        // registration failed :(
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            }
+        },
+        initWW: function () {
+            var _ = this;
+            _.ww = new Worker('ww.js');
+            _.ww.addEventListener('message', function (e) {
+                console.log('get message from web workers');
+                console.log(e.data);
+                //子线程调用完毕关闭
+                _.ww.terminate();
+            });
+
+            _.ww.onerror(function (e) {
+                console.log('err : \n');
+                console.log(e);
+                //子线程调用完毕关闭
+                _.ww.terminate();
+            });
+
+            //或者这种写法
+            // _ww.addEventListener('error', function (event) {
+            //     console.log(event);
+            //     //子线程调用完毕关闭
+            //     _.ww.terminate();
+            // });
+
+            setTimeout(function () {
+                console.log('post message to web workers');
+                _.ww.postMessage({ method: 'echo', args: ['Work'] });
+            }, 5000);
         }
     }
 
