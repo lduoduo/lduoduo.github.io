@@ -31,7 +31,7 @@
         },
         initWS: function () {
             if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('/js/sw.js', { scope: './', insecure: true })
+                navigator.serviceWorker.register('/public/js/sw.js', { scope: './', insecure: true })
                     .then(function (registration) {
                         // Registration was successful
                         console.log('ServiceWorker registration successful with scope: ', registration.scope);
@@ -43,7 +43,7 @@
         },
         initWW: function () {
             var _ = this;
-            _.ww = new Worker('/js/ww.js');
+            _.ww = new Worker('/public/js/ww.js');
             _.ww.addEventListener('message', function (e) {
                 console.log('get message from web workers');
                 console.log(e.data);
