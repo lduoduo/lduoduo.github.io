@@ -4,6 +4,7 @@
     var home = {
         init: function () {
             this.initMusic();
+            worker.init();
         },
         initMusic: function () {
             window.mv = new MusicVisualizer();
@@ -24,6 +25,10 @@
     }
 
     var worker = {
+        init:function(){
+            this.initWS();
+            this.initWW();
+        },
         initWS: function () {
             if ('serviceWorker' in navigator) {
                 navigator.serviceWorker.register('js/sw.js', { scope: '/', insecure: true })

@@ -9,6 +9,7 @@ self.addEventListener('install', function (event) {
 
 //激活
 self.addEventListener('activate', function (event) {
+    console.log('sw is active');
     // You're good to go!
 });
 
