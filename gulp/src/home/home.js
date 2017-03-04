@@ -21,6 +21,14 @@
                     // $('#music')[0].pause();
                 }
             });
+        },
+        fetchData: function(){
+            ajax.jsonp('//www.ly.com/udc/api/getsurvey',{
+                platform: 'pc',
+                page: '国内游默认首页'
+            },function(data){
+                console.log(data);
+            });
         }
     }
 

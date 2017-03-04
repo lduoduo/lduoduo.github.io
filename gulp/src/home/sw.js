@@ -3,7 +3,18 @@
 //安装
 self.addEventListener('install', function (event) {
     event.waitUntil(
-        fetchStuffAndInitDatabases()
+        caches.open('myapp-static-v1').then(function (cache) {
+            return cache.addAll([
+                '/',
+                '/public/css/apps.css',
+                '/public/css/home.css',
+                '/public/js/apps.js',
+                '/public/js/home.js',
+                '/public/img/bg.png',
+                '/public/img/icon.png',
+                '/public/img/music.png'
+            ]);
+        })
     );
 });
 
@@ -19,9 +30,10 @@ self.addEventListener('activate', function (event) {
 // });
 
 self.addEventListener('fetch', function (event) {
+    console.log(event.request);
     if (/\.jpg$/.test(event.request.url)) {
         event.respondWith(
-            fetch('//www.google.co.uk/logos/example.gif', {
+            fetch('//cimage1.tianjimedia.com/uploadImages/thirdImages/2017/062/WP4309M5A449.jpg', {
                 mode: 'no-cors'
             })
         );
