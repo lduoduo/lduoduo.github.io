@@ -39,16 +39,19 @@
                 .then(status)
                 .then(json)
                 .then(function (data) {
+                    alert(JSON.stringify(data));
                     console.log("请求成功，JSON解析后的响应数据为:", data);
                 })
                 .catch(function (err) {
+                    alert(JSON.stringify(err));
                     console.log("Fetch错误:" + err);
                 });
         },
         fetchImg: function () {
             let img = new Image();
-            img.src = "//lduoduo.github.io/public/img/bg.png";
+            img.src = "//lduoduo.github.io/public/img/bg.jpg";
             img.onload = function (e) {
+                alert(JSON.stringify(e));
                 console.log(e);
             }
         }
