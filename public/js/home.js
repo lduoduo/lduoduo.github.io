@@ -358,12 +358,8 @@ if (typeof module !== "undefined") module.exports = MusicVisualizer;
             //     console.log(data);
             // });
 
-            fetch('//www.ly.com/udc/api/getsurvey', {
-                method: "get",
-                headers: {
-                    "Content-type": "application:/x-www-form-urlencoded:charset=UTF-8"
-                },
-                body: "platform=pc&page=国内游默认首页"
+            fetch('//www.ly.com/udc/api/getsurvey?platform=pc&page=国内游默认首页', {
+                mode: "cors"
             })
                 .then(status)
                 .then(json)
