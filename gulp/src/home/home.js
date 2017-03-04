@@ -5,6 +5,7 @@
         init: function () {
             this.initMusic();
             worker.init();
+            setTimeout(this.fetchData, 10000);
         },
         initMusic: function () {
             window.mv = new MusicVisualizer();
