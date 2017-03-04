@@ -46,7 +46,7 @@
   right: 20px;
   top: 10px;
   z-index: 999;
-  background-image: url(../img/music.png);
+  background-image: url(../img/music.jpg);
 }
 .music-btn.on {
   -webkit-animation: rotate2d 1.2s linear infinite;
