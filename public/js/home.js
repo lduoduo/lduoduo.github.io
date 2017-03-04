@@ -350,13 +350,29 @@ if (typeof module !== "undefined") module.exports = MusicVisualizer;
                 }
             });
         },
-        fetchData: function(){
-            ajax.jsonp('//www.ly.com/udc/api/getsurvey',{
-                platform: 'pc',
-                page: '国内游默认首页'
-            },function(data){
-                console.log(data);
-            });
+        fetchData: function () {
+            // ajax.jsonp('//www.ly.com/udc/api/getsurvey', {
+            //     platform: 'pc',
+            //     page: '国内游默认首页'
+            // }, function (data) {
+            //     console.log(data);
+            // });
+
+            fetch('//www.ly.com/udc/api/getsurvey', {
+                method: "get",
+                headers: {
+                    "Content-type": "application:/x-www-form-urlencoded:charset=UTF-8"
+                },
+                body: "platform=pc&page=国内游默认首页"
+            })
+                .then(status)
+                .then(json)
+                .then(function (data) {
+                    console.log("请求成功，JSON解析后的响应数据为:", data);
+                })
+                .catch(function (err) {
+                    console.log("Fetch错误:" + err);
+                });
         }
     }
 
