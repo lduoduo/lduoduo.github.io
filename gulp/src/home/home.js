@@ -8,6 +8,7 @@
             setTimeout(this.fetchData, 10000);
         },
         initMusic: function () {
+            let _=this;
             window.mv = new MusicVisualizer();
             mv.play("public/media/bg.m4a", false);
 
@@ -19,6 +20,7 @@
                     // $('#music')[0].play();
                 } else { // 暂停
                     mv.pause();
+                    _.fetchData();
                     // $('#music')[0].pause();
                 }
             });
