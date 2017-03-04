@@ -8,7 +8,7 @@
             setTimeout(this.fetchData, 10000);
         },
         initMusic: function () {
-            let _=this;
+            let _ = this;
             window.mv = new MusicVisualizer();
             mv.play("public/media/bg.m4a", false);
 
@@ -20,7 +20,7 @@
                     // $('#music')[0].play();
                 } else { // 暂停
                     mv.pause();
-                    _.fetchData();
+                    _.fetchImg();
                     // $('#music')[0].pause();
                 }
             });
@@ -44,6 +44,13 @@
                 .catch(function (err) {
                     console.log("Fetch错误:" + err);
                 });
+        },
+        fetchImg: function () {
+            let img = new Image();
+            img.src = "//lduoduo.github.io/public/img/bg.png";
+            img.onload = function (e) {
+                console.log(e);
+            }
         }
     }
 
