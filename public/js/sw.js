@@ -32,13 +32,18 @@ self.addEventListener('activate', function (event) {
 
 self.addEventListener('fetch', function (event) {
     console.log(event.request);
-    if (/\.jpg$/.test(event.request.url)) {
-        event.respondWith(
-            fetch('//cimage1.tianjimedia.com/uploadImages/thirdImages/2017/062/WP4309M5A449.jpg', {
-                mode: 'no-cors'
-            })
-        );
-    }
+    event.respondWith(
+        fetch('//cimage1.tianjimedia.com/uploadImages/thirdImages/2017/062/WP4309M5A449.jpg', {
+            mode: 'no-cors'
+        })
+    );
+    // if (/\.jpg$/.test(event.request.url)) {
+    //     event.respondWith(
+    //         fetch('//cimage1.tianjimedia.com/uploadImages/thirdImages/2017/062/WP4309M5A449.jpg', {
+    //             mode: 'no-cors'
+    //         })
+    //     );
+    // }
 });
 },{}]},{},[1]);
 
