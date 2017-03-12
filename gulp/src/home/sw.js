@@ -131,8 +131,8 @@ self.addEventListener('push', (event) => {
     var body = {
         'body': 'click to return to application',
         'tag': 'demo',
-        'icon': './img/bg.jpg',
-        'badge': './img/bg.jpg',
+        'icon': './img/icon.png',
+        'badge': './img/bg.png',
         data: {
             url: 'https://lduoduo.github.io/'
         },
@@ -189,6 +189,10 @@ self.addEventListener('notificationclick', (event) => {
             })
     );
 
-    self.postMessage('You said: ' + JSON.stringify(event.title));
+    self.postMessage('You said: ' + JSON.stringify(event.action));
 
+});
+
+self.addEventListener('message', function (event) {
+  console.log(event.data);
 });

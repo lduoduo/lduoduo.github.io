@@ -49,7 +49,7 @@
         },
         fetchImg: function () {
             let img = new Image();
-            img.src = "./img/bg.jpg";
+            img.src = "./public/img/bg.jpg";
             img.onload = function (e) {
                 alert(JSON.stringify(e));
                 console.log(e);
@@ -63,11 +63,15 @@
             this.initWW();
         },
         initWS: function () {
+            var _= this;
             if ('serviceWorker' in navigator) {
                 //接收sw消息
                 navigator.serviceWorker.addEventListener('message', function (event) {
                     console.log(event.data);
                 });
+
+                //发送消息
+                _.msgToSW = msg => navigator.serviceWorker.controller && navigator.serviceWorker.controller.postMessage(msg);
 
                 // navigator.serviceWorker.register('/public/js/sw.js', { scope: './', insecure: true })
                 navigator.serviceWorker.register('public/js/sw.js', { insecure: true })
