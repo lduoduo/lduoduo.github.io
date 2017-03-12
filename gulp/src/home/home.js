@@ -49,7 +49,7 @@
         },
         fetchImg: function () {
             let img = new Image();
-            img.src = "../img/bg.jpg";
+            img.src = "./img/bg.jpg";
             img.onload = function (e) {
                 alert(JSON.stringify(e));
                 console.log(e);
