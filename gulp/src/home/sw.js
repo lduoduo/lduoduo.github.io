@@ -131,8 +131,8 @@ self.addEventListener('push', (event) => {
     var body = {
         'body': 'click to return to application',
         'tag': 'demo',
-        'icon': './img/icon.png',
-        'badge': './img/bg.png',
+        'icon': '../img/icon.png',
+        'badge': '../img/bg.png',
         data: {
             url: 'https://lduoduo.github.io/'
         },
