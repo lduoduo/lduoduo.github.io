@@ -153,8 +153,10 @@ function reset(callback) {
 
         files.forEach(function (file) {
 
-            var reg = file.match(/(src\/(\w+)*)?\/([\w]+.js)?$/),
-                fileName = reg[3];
+            var reg = file.match(/(src\/(\w+)*)?\/([\w]+.js)?$/);
+            console.log(reg);
+            
+            var    fileName = reg[3];
 
             var b = watchify(browserify(assign({}, watchify.args, {
                 cache: {},

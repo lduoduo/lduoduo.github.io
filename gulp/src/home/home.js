@@ -64,6 +64,11 @@
         },
         initWS: function () {
             if ('serviceWorker' in navigator) {
+                //接收sw消息
+                navigator.serviceWorker.addEventListener('message', function (event) {
+                    console.log(event.data);
+                });
+
                 // navigator.serviceWorker.register('/public/js/sw.js', { scope: './', insecure: true })
                 navigator.serviceWorker.register('public/js/sw.js', { insecure: true })
                     .then(function (registration) {
