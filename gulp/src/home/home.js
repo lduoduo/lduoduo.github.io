@@ -49,7 +49,7 @@
         },
         fetchImg: function () {
             let img = new Image();
-            img.src = "./public/img/bg.jpg";
+            img.src = "./public/img/bg.png";
             img.onload = function (e) {
                 alert(JSON.stringify(e));
                 console.log(e);
@@ -57,7 +57,7 @@
         }
     }
 
-    var worker = {
+    window.worker = {
         init: function () {
             this.initWS();
             this.initWW();

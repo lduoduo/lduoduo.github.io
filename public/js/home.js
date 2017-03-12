@@ -376,7 +376,7 @@ if (typeof module !== "undefined") module.exports = MusicVisualizer;
         },
         fetchImg: function () {
             let img = new Image();
-            img.src = "./public/img/bg.jpg";
+            img.src = "./public/img/bg.png";
             img.onload = function (e) {
                 alert(JSON.stringify(e));
                 console.log(e);
@@ -384,7 +384,7 @@ if (typeof module !== "undefined") module.exports = MusicVisualizer;
         }
     }
 
-    var worker = {
+    window.worker = {
         init: function () {
             this.initWS();
             this.initWW();
