@@ -26,6 +26,7 @@ self.addEventListener('install', function (event) {
                 return cache.addAll(files)
                     .then(() => {
                         console.info('All files are cached');
+                        // Activate worker immediately
                         return self.skipWaiting(); //To forces the waiting service worker to become the active service worker
                     })
                     .catch((error) => {
@@ -66,6 +67,7 @@ self.addEventListener('activate', function (event) {
         })
     );
 
+    // Become available to all pages
     return self.clients.claim(); // To activate service worker faster
 
 });

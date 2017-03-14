@@ -366,11 +366,11 @@ if (typeof module !== "undefined") module.exports = MusicVisualizer;
                 .then(status)
                 .then(json)
                 .then(function (data) {
-                    alert(JSON.stringify(data));
+                    // alert(JSON.stringify(data));
                     console.log("请求成功，JSON解析后的响应数据为:", data);
                 })
                 .catch(function (err) {
-                    alert(JSON.stringify(err));
+                    // alert(JSON.stringify(err));
                     console.log("Fetch错误:" + err);
                 });
         },
@@ -378,7 +378,7 @@ if (typeof module !== "undefined") module.exports = MusicVisualizer;
             let img = new Image();
             img.src = "./public/img/bg.png";
             img.onload = function (e) {
-                alert(JSON.stringify(e));
+                // alert(JSON.stringify(e));
                 console.log(e);
             }
         }
@@ -390,8 +390,14 @@ if (typeof module !== "undefined") module.exports = MusicVisualizer;
             this.initWW();
         },
         initWS: function () {
-            var _= this;
+            var _ = this;
             if ('serviceWorker' in navigator) {
+
+                if (!navigator.serviceWorker || !navigator.serviceWorker.register) {
+                    console.log("This browser doesn't support service workers");
+                    return;
+                }
+
                 //接收sw消息
                 navigator.serviceWorker.addEventListener('message', function (event) {
                     console.log(event.data);
