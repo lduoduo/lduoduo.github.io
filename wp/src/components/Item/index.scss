@@ -1,0 +1,66 @@
+@import '../../../styles/mixins.scss';
+@import '../../../styles/app.scss';
+// @import './_heart.scss';
+// @import './_canvas.scss';
+@import './_module.scss';
+// @import './_slide.scss';
+// @import './_menu.scss';
+// @import './_phb.scss';
+$folder: '../../../images/';
+// @folder: '../../../images/';
+
+body {
+    background: url('../../../images/4.jpg') no-repeat center;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.footer {
+    font-size: 1.2rem;
+    line-height: 50px;
+
+    position: fixed;
+    bottom: 0;
+
+    box-sizing: border-box;
+    width: 100vw;
+    height: 50px;
+    padding: 0 20px;
+
+    text-align: right;
+
+    color: #fff;
+    background: rgba(0, 0, 0, .5);
+}
+
+.root {
+    position: relative;
+    z-index: 10;
+    display: inline-block;
+    width: 100%;
+    min-width: 900px;
+
+    width: 100%;
+    min-width: 900px;
+
+    list-style: none;
+
+    text-align: center;
+}
+
+.app{
+    perspective: 1000px;
+    overflow: hidden;
+}
+.main{
+    transition: background-image 0.8s linear;
+    background-image: url('../../../images/10.jpg');
+    background-repeat:  no-repeat;
+    background-position:  center;
+    background-attachment: fixed;
+    background-size: cover;
+    transition: all 0.3s linear;
+    &.slide-right{
+        transform: translate3d(300px, -100px, -10px) rotateY(-3deg) scale(0.9);
+    }
+}
