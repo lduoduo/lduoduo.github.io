@@ -1,4 +1,4 @@
-$folder: '../../../images';
+$folder: '../../images';
 
 .menu {
     position: fixed;
@@ -40,7 +40,7 @@ $folder: '../../../images';
         width: 50px;
         height: 50px;
 
-        background: url('../../../images/logo.png') no-repeat center;
+        /*background: url('../../../images/logo.png') no-repeat center;*/
         background-size: 60%;
     }
     .nav-right {
@@ -65,7 +65,7 @@ $folder: '../../../images';
             text-decoration: none;
 
             border-radius: 50%;
-            background: url('../../../images/nav-right-icon.png') no-repeat #333;
+            background: url('../../images/nav-right-icon.png') no-repeat #333;
             background-size: 73%;
             &.favorite {
                 background-position: 5px 7px;
@@ -108,8 +108,8 @@ $folder: '../../../images';
                 border: 4px solid #444;
                 border-left-color: #fcb039;
                 border-radius: 50%;
-                // display: block;
-                // animation: rond .5s infinite;
+                /*display: block;*/
+                /*animation: rond .5s infinite;*/
             }
             &:hover {
                 .rond {

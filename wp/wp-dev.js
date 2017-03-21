@@ -33,18 +33,18 @@ module.exports = {
         filename: 'bundle.js'
     },
     plugins: [
+        new webpack.NoErrorsPlugin(),
         // Tells React to build in either dev or prod modes. https://facebook.github.io/react/downloads.html (See bottom)
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify('development'),
             __DEV__: true
         }),
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin(),
         // Create HTML file that includes references to bundled CSS and JS.
         new HtmlWebpackPlugin({
             template: 'src/template.html',
             title: '开发模式',
-            favicon: './src/favicon.ico',
+            // favicon: './src/favicon.ico',
             minify: {
                 removeComments: true,
                 collapseWhitespace: true
@@ -101,22 +101,19 @@ module.exports = {
             {
                 test: /\.less$/,
                 // include: path.resolve(__dirname, 'src/common'),
-                // use: 'style!css!postcss?parser=postcss-scss',
-                test: /\.(less|css)$/,
                 use: ["style-loader", "css-loader", "less-loader"]
             },
             {
                 test: /\.scss$/,
                 // include: path.resolve(__dirname, 'src/common'),
-                // use: 'style!css!postcss?parser=postcss-scss',
-                test: /\.(less|css)$/,
                 use: ["style-loader", "css-loader", {
                     loader: 'postcss-loader?parser=postcss-scss',
                     options: {
                         plugins: function () {
                             return [
                                 require('precss'),
-                                require('autoprefixer')
+                                require('autoprefixer'),
+                                require('rucksack-css')
                             ];
                         }
                     }

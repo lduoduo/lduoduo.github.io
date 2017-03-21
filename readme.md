@@ -6,6 +6,9 @@ inprogress....
 
 [online url](https://lduoduo.github.io/)
 
-###Logs
+### Logs
 
 try to use webpack2 to build the files
+
+### QA
++ scss file comma should use: `/**/`

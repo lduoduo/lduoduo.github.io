@@ -1,16 +1,16 @@
-@import '../../../styles/mixins.scss';
-@import '../../../styles/app.scss';
-// @import './_heart.scss';
-// @import './_canvas.scss';
+@import '../../common/style/mixins.scss';
+/* @import '../../common/style/app.scss';*/
+
 @import './_module.scss';
-// @import './_slide.scss';
-// @import './_menu.scss';
-// @import './_phb.scss';
-$folder: '../../../images/';
-// @folder: '../../../images/';
+/** @import './_slide.scss';*/
+/* @import './_menu.scss';*/
+/* @import './_phb.scss';*/
+/* 怎么使用文件夹变量? */
+$folder: '../../images/';
+/* @folder: '../../../images/';*/
 
 body {
-    background: url('../../../images/4.jpg') no-repeat center;
+    background: url('../../images/4.jpg') no-repeat center;
     background-attachment: fixed;
     background-size: cover;
 }
@@ -54,7 +54,7 @@ body {
 }
 .main{
     transition: background-image 0.8s linear;
-    background-image: url('../../../images/10.jpg');
+    background-image: url('../../images/1.jpg');
     background-repeat:  no-repeat;
     background-position:  center;
     background-attachment: fixed;
