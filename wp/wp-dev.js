@@ -6,11 +6,13 @@
 
 const path = require('path');
 const webpack = require('webpack');
+
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const precss = require('precss');
-const autoprefixer = require('autoprefixer');
-const rucksackCss = require('rucksack-css');
+// const precss = require('precss');
+// const autoprefixer = require('autoprefixer');
+// const rucksackCss = require('rucksack-css');
 
 module.exports = {
     context: path.resolve(__dirname),
@@ -40,16 +42,21 @@ module.exports = {
             __DEV__: true
         }),
         new webpack.HotModuleReplacementPlugin(),
+        new ExtractTextPlugin({
+            filename: "[name].css",
+            // filename: "[name]-[chunkhash].css",
+            allChunks: true,
+        }),
         // Create HTML file that includes references to bundled CSS and JS.
         new HtmlWebpackPlugin({
             template: 'src/template.html',
             title: '开发模式',
             // favicon: './src/favicon.ico',
-            minify: {
-                removeComments: true,
-                collapseWhitespace: true
-            },
-            hash: true,
+            // minify: {
+            //     removeComments: true,
+            //     collapseWhitespace: true
+            // },
+            // hash: true,
             // 这样每次客户端页面就会根据这个hash来判断页面是否有必要刷新
             // 在项目后续过程中，经常需要做些改动更新什么的，一但有改动，客户端页面就会自动更新！
             inject: 'body'

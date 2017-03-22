@@ -21,29 +21,33 @@ class Item extends Component {
             focused: 0
         };
     }
-
+    //渲染完成后调用一次，这个时候DOM结构已经渲染了。
+    //这个时候就可以初始化其他框架的设置了，如果利用jQuery绑定事件等等。
     componentDidMount() {
         // smoke(document.querySelector('#canvas0'));
         console.log('loaded Item module');
-        fullpage.initialize('#fullpage', {
-            anchors: ['page0', 'page1', 'page2'],
-            css3: true,
-            onLeave: function () { //滚动时调用
-                console.log('scroll leave');
-            },
-            afterLoad: function () { //滚动后调用
-                console.log(this);
-                var el = this;
-                var pa = this.parentElement;
-                var bg = "url(" + el.dataset.imgurl + ")";
-                console.log(bg);
-                pa.style.backgroundImage = bg;
-                // $(".J-main").css("background-image", bg);
-                // $(this).find('.title').addClass('from-left');
-                // $(this).find('.desc').addClass('from-right');
-                // console.log('scroll leave loaded');
-            }
-        });
+
+        console.log(fullpage);
+        debugger;
+        // fullpage.initialize('#fullpage', {
+        //     anchors: ['page0', 'page1', 'page2'],
+        //     css3: true,
+        //     onLeave: function () { //滚动时调用
+        //         console.log('scroll leave');
+        //     },
+        //     afterLoad: function () { //滚动后调用
+        //         console.log(this);
+        //         var el = this;
+        //         var pa = this.parentElement;
+        //         var bg = "url(" + el.dataset.imgurl + ")";
+        //         console.log(bg);
+        //         pa.style.backgroundImage = bg;
+        //         // $(".J-main").css("background-image", bg);
+        //         // $(this).find('.title').addClass('from-left');
+        //         // $(this).find('.desc').addClass('from-right');
+        //         // console.log('scroll leave loaded');
+        //     }
+        // });
     }
     render() {
         const {
@@ -55,6 +59,8 @@ class Item extends Component {
         console.log(list);
 
         let count = list.length;
+
+        debugger;
 
         return (
             <ul styleName="root" id='fullpage'>

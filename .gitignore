@@ -6,3 +6,4 @@ gulp/node_modules
 .DS_Store
 wp/.DS_Store
 *.log
+test.md

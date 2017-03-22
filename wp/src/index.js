@@ -2,11 +2,11 @@
  * webapp 程序主入口
  */
 
-import 'babel-polyfill'
-import {AppContainer} from 'react-hot-loader'
-import React from 'react'
-import {render} from 'react-dom'
-import App from './app/home'
+import 'babel-polyfill';
+import {AppContainer} from 'react-hot-loader';
+import React from 'react';
+import {render} from 'react-dom';
+import App from './app/home';
 // import './common/style/app.scss'
 
 const rootEl = document.getElementById('app');

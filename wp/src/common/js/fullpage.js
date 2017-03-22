@@ -79,7 +79,7 @@ var originals;
 var container;
 
 //easeInOutCubic animation included in the plugin
-Math.easeInOutCubic = function(t, b, c, d) {
+Math.easeInOutCubic = function (t, b, c, d) {
     if ((t /= d / 2) < 1) return c / 2 * t * t * t + b;
     return c / 2 * ((t -= 2) * t * t + 2) + b;
 };
@@ -327,7 +327,7 @@ function afterDomReady() {
  */
 function extend(defaultOptions, options) {
     //creating the object if it doesnt exist
-    if (typeof(options) !== 'object') {
+    if (typeof (options) !== 'object') {
         options = {};
     }
 
@@ -480,7 +480,7 @@ function scrollTo(element, to, duration, callback) {
     var increment = 20;
     activeAnimation = true;
 
-    var animateScroll = function() {
+    var animateScroll = function () {
         if (activeAnimation) { //in order to stope it from other function whenever we want
             var val = to;
 
@@ -848,7 +848,7 @@ function addVerticalNavigation() {
     //creating the event listener
     var links = $$(SLIDES_NAV_LINK_SEL);
     for (var l = 0; l < links.length; l++) {
-        addListenerMulti(links[l], 'click onclick touchstart', function(e) {
+        addListenerMulti(links[l], 'click onclick touchstart', function (e) {
             e = window.event || e || e.originalEvent;
             preventDefault(e);
             var index = getNodeIndex(this.parentNode);
@@ -940,7 +940,7 @@ function scrollHandler() {
 
             //small timeout in order to avoid entering in hashChange event when scrolling is not finished yet
             clearTimeout(scrollId);
-            scrollId = setTimeout(function() {
+            scrollId = setTimeout(function () {
                 isScrolling = false;
             }, 100);
         }
@@ -949,7 +949,7 @@ function scrollHandler() {
             //for the auto adjust of the viewport to fit a whole section
             clearTimeout(scrollId2);
 
-            scrollId2 = setTimeout(function() {
+            scrollId2 = setTimeout(function () {
                 if (canScroll && !options.autoScrolling || options.scrollBar) {
                     //allows to scroll to an active section and
                     //if the section is already active, we prevent firing callbacks
@@ -1272,7 +1272,7 @@ function performMovement(v) {
         //even when the scrollingSpeed is 0 there's a little delay, which might cause the
         //scrollingSpeed to change in case of using silentMoveTo();
         if (options.scrollingSpeed) {
-            setTimeout(function() {
+            setTimeout(function () {
                 afterSectionLoads(v);
             }, options.scrollingSpeed);
         } else {
@@ -1283,7 +1283,7 @@ function performMovement(v) {
     // using jQuery animate
     else {
         var scrollSettings = getScrollSettings(v.dtop);
-        scrollTo(scrollSettings.element, scrollSettings.options, options.scrollingSpeed, function() {
+        scrollTo(scrollSettings.element, scrollSettings.options, options.scrollingSpeed, function () {
             afterSectionLoads(v);
         });
     }
@@ -1386,7 +1386,7 @@ function hashChangeHandler() {
  * Sliding with arrow keys, both, vertical and horizontal
  */
 var keydownId;
-document.onkeydown = function(e) {
+document.onkeydown = function (e) {
     clearTimeout(keydownId);
 
     var activeElement = document.activeElement;
@@ -1406,7 +1406,7 @@ document.onkeydown = function(e) {
         }
 
         var shiftPressed = e.shiftKey;
-        keydownId = setTimeout(function() {
+        keydownId = setTimeout(function () {
             onkeydown(shiftPressed, charCode);
         }, 150);
     }
@@ -1420,7 +1420,7 @@ function onkeydown(shiftPressed, charCode) {
             moveSectionUp();
             break;
 
-            //down
+        //down
         case 32: //spacebar
             if (shiftPressed) {
                 moveSectionUp();
@@ -1431,22 +1431,22 @@ function onkeydown(shiftPressed, charCode) {
             moveSectionDown();
             break;
 
-            //Home
+        //Home
         case 36:
             moveTo(1);
             break;
 
-            //End
+        //End
         case 35:
             moveTo($$(SECTION_SEL).length);
             break;
 
-            //left
+        //left
         case 37:
             moveSlideLeft();
             break;
 
-            //right
+        //right
         case 39:
             moveSlideRight();
             break;
@@ -1461,16 +1461,16 @@ function onkeydown(shiftPressed, charCode) {
  */
 var slidesNav = $(SLIDES_NAV_LINK_SEL);
 if (slidesNav !== null) {
-    addListenerMulti($(SLIDES_NAV_LINK_SEL), 'click onclick touchstart', function(e) {
+    addListenerMulti($(SLIDES_NAV_LINK_SEL), 'click onclick touchstart', function (e) {
         preventDefault(e);
 
         //equivalent to:   var slides = $(this).closest(SECTION_SEL).find(SLIDES_WRAPPER_SEL);
-        var section = closest(this, function(el) {
+        var section = closest(this, function (el) {
             return hasClass(e1, SECTION);
         });
         var slides = $(SLIDES_WRAPPER_SEL, section);
 
-        var li = closest(this, function(el) {
+        var li = closest(this, function (el) {
             return el.tagName === 'li';
         });
         var liIndex = getNodeIndex(li);
@@ -1498,7 +1498,7 @@ function landscapeScroll(slides, destiny) {
     var slideIndex = getNodeIndex(destiny);
 
     //equivalent to slides.closest(SECTION_SEL)
-    var section = closest(slides, function(e1) {
+    var section = closest(slides, function (e1) {
         return hasClass(e1, SECTION);
     });
 
@@ -1545,7 +1545,7 @@ function landscapeScroll(slides, destiny) {
         setState(slideIndex, slideAnchor, anchorLink, sectionIndex);
     }
 
-    var afterSlideLoads = function() {
+    var afterSlideLoads = function () {
         //if the site is not just resizing and readjusting the slides
         if (!localIsResizing) {
             isFunction(options.afterSlideLoad) && options.afterSlideLoad.call(destiny, anchorLink, (sectionIndex + 1), slideAnchor, slideIndex);
@@ -1561,11 +1561,11 @@ function landscapeScroll(slides, destiny) {
         addAnimation(slidesContainer, options.scrollingSpeed > 0);
         setTransforms(slidesContainer, translate3d);
 
-        setTimeout(function() {
+        setTimeout(function () {
             afterSlideLoads();
         }, options.scrollingSpeed, options.easing);
     } else {
-        scrollTo(slides, Math.round(destiny.offsetLeft), options.scrollingSpeed, function() {
+        scrollTo(slides, Math.round(destiny.offsetLeft), options.scrollingSpeed, function () {
             afterSlideLoads();
         });
     }
@@ -1601,7 +1601,7 @@ function resizeHandler() {
         //http://stackoverflow.com/questions/4298612/jquery-how-to-call-resize-event-only-once-its-finished-resizing
         clearTimeout(resizeId);
 
-        resizeId = setTimeout(function() {
+        resizeId = setTimeout(function () {
             reBuild(true);
         }, 350);
     }
@@ -1707,7 +1707,7 @@ function transformContainer(translate3d, animated) {
     setTransforms(container, translate3d);
 
     //syncronously removing the class after the animation has been applied.
-    setTimeout(function() {
+    setTimeout(function () {
         removeClass(container, NO_TRANSITION);
     }, 10);
 }
@@ -1751,7 +1751,7 @@ function scrollPageAndSlide(destiny, slide) {
 
     //we need to scroll to the section and then to the slide
     if (destiny !== lastScrolledDestiny && !hasClass(section, ACTIVE)) {
-        scrollPage(section, function() {
+        scrollPage(section, function () {
             scrollSlider(section, slide);
         });
     }
@@ -2084,7 +2084,7 @@ function silentLandscapeScroll(activeSlide, noCallbacks) {
     }
 
     //equivalent to:   activeSlide.closest(SLIDES_WRAPPER_SEL)
-    var slides = closest(activeSlide, function(el) {
+    var slides = closest(activeSlide, function (el) {
         return hasClass(el, SLIDES_WRAPPER);
     });
 
@@ -2169,4 +2169,4 @@ fullpage = {
     setScrollingSpeed: setScrollingSpeed
 };
 
-export {fullpage};
+export { fullpage };
