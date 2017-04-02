@@ -4,3 +4,5 @@ gulp/node_modules
 **.map
 *.map
 .DS_Store
+
+wp/test.md
