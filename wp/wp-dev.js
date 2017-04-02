@@ -126,6 +126,14 @@ module.exports = {
                     }
                 }]
             },
+            {
+                test: /\.css$/,
+                use: ['style?sourceMap', 'css?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]']
+            },
+            // {
+            //     test: /\.css$/,
+            //     use: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]')
+            // },
             // 公有样式，不需要私有化，单独配置
             {
                 test: /\.(otf|eot|svg|ttf|woff|woff2).*$/,
