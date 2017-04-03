@@ -31,6 +31,8 @@ var imagemin = require('gulp-imagemin');
 var pngquant = require('imagemin-pngquant');
 var tinypng = require('gulp-tinypng-compress');
 
+var browserSync = require('browser-sync').create();
+
 // 报错抛出提示
 var onError = function (err) {
     gutil.log('======= ERROR. ========\n');
@@ -248,6 +250,24 @@ function imgMin(callback) {
         .on('finish', callback);
 }
 
+// 静态服务器:browser-sync
+gulp.task('browserSync', function() {
+    browserSync.init({
+        // proxy: "10.101.142.101",
+        server: {
+            baseDir: "../"
+        }
+    });
+});
+
+// 代理
+// gulp.task('browser-sync', function() {
+//     browserSync.init({
+//         proxy: "你的域名或IP"
+//     });
+// });
+
+gulp.task(browserSync);
 
 //default task
 gulp.task(buildCssAndJs);
@@ -264,5 +284,7 @@ gulp.task(compress);
 gulp.task(imgMin);
 
 gulp.task('default', gulp.series('reset', 'Less', 'buildCssAndJs'));
+
+gulp.task('server', gulp.series('browserSync'));
 
 gulp.task('build', gulp.series('compress', 'minCss', 'imgMin'));

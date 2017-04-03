@@ -19,6 +19,7 @@ var files = [
 
 //安装
 self.addEventListener('install', function (event) {
+    console.log('sw is installed');
     event.waitUntil(
         caches.open(cacheName)
             .then(function (cache) {
