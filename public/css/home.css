@@ -37,6 +37,7 @@
 .main {
   text-align: center;
   margin-top: 30px;
+  max-height: calc(-100vh);
 }
 .music-btn {
   width: 30px;

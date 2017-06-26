@@ -1,11 +1,10 @@
 /* 首页 */
 
 @import '../../common/less/list.less';
-
-.main{
-	text-align: center;
-	margin-top: 30px;
-    // margin-bottom: 50px;
+.main {
+    text-align: center;
+    margin-top: 30px;
+    max-height: calc(100vh - 200px);
 }
 
 .music-btn {
@@ -23,18 +22,27 @@
     -webkit-animation: rotate2d 1.2s linear infinite;
     animation: rotate2d 1.2s linear infinite;
 }
-@-webkit-keyframes rotate2d {
-    from { -webkit-transform: rotateZ(0deg); }
-    to { -webkit-transform: rotateZ(360deg); }
-}
-@keyframes rotate2d {
-    from { transform: rotateZ(0deg); }
-    to { transform: rotateZ(360deg); }
-}
 
-@media screen and (max-width: 1024px){
-    .main{  
-        margin-top: 10px;
+@-webkit-keyframes rotate2d {
+    from {
+        -webkit-transform: rotateZ(0deg);
+    }
+    to {
+        -webkit-transform: rotateZ(360deg);
     }
 }
 
+@keyframes rotate2d {
+    from {
+        transform: rotateZ(0deg);
+    }
+    to {
+        transform: rotateZ(360deg);
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .main {
+        margin-top: 10px;
+    }
+}
