@@ -553,6 +553,27 @@ a.u {
     margin-top: 10px;
   }
 }
+.footer {
+  height: 30px;
+  margin-top: 20px;
+  overflow: hidden;
+  text-align: center;
+}
+.footer strong:last-child {
+  margin-left: 40px;
+}
+.footer strong:last-child a {
+  margin-left: 10px;
+}
+.footer .logo {
+  width: 30px;
+  height: 30px;
+  background: url('../img/github.png') no-repeat;
+  display: inline-block;
+  background-size: 100%;
+  background-position: center;
+  vertical-align: middle;
+}
 body {
   min-width: 1200px;
   min-height: 100vh;
@@ -561,7 +582,6 @@ body {
   background-size: 24%;
   background-position: left bottom;
   background-attachment: fixed;
-  /*background-blend-mode: lighten;*/
   color: #fff;
 }
 .content-box {
