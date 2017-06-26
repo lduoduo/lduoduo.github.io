@@ -88,22 +88,33 @@ module.exports = {
                 }]
             },
             //目前下面这段加上会报错!!!
-            // {
-            //     test: /\.(sass|scss)$/,
-            //     include: [path.resolve(__dirname, 'src/app'), path.resolve(__dirname, 'src/components')],
-            //     use: [
-            //         {
-            //             loader: [
-            //                 'style',
-            //                 'postcss?parser=postcss-scss'
-            //             ],
-            //             options: {
-            //                 modules: true,
-            //                 localIdentName: '[local]___[hash:base64:5]'
-            //             }
-            //         }
-            //     ]
-            // },
+            {
+                test: /\.(sass|scss)$/,
+                include: [path.resolve(__dirname, 'src/app'), path.resolve(__dirname, 'src/components')],
+                use: ["style-loader", 
+                {
+                    loader: 'css-loader',
+                    options: {
+                        modules:true,
+                        importLoaders: 1,
+                        localIdentName: '[local]___[hash:base64:5]'
+                    }
+                }, 
+                {
+                    loader: 'postcss-loader?parser=postcss-scss',
+                    options: {
+                        plugins: function () {
+                            return [
+                                require('precss'),
+                                require('autoprefixer'),
+                                require('rucksack-css')
+                            ];
+                        },
+                        // modules: true,
+                        // localIdentName: '[local]___[hash:base64:5]'
+                    }
+                }]
+            },
             // 组件样式，需要私有化，单独配置
             {
                 test: /\.less$/,
